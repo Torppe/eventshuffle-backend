@@ -1,4 +1,3 @@
-import eventsRepository from '../../src/repositories/events-repository';
 
 describe('eventsRepository', () => {
     describe('findAll', () => {
