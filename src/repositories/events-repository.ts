@@ -2,11 +2,11 @@ import { RepositoryError } from '../utils/errors';
 import { db } from '../db/database'
 import { EventDate } from '../db/types';
 
-async function findAll() {
+async function findAll(): Promise<{ event_id: number, name: string }[]> {
     return await db.selectFrom("events").selectAll().execute();
 }
 
-async function find(eventId: number) {
+async function find(eventId: number): Promise<{ id: number, name: string, dates: Date[] }> {
     const eventDates = await db.selectFrom("event_dates")
         .innerJoin("events", "events.event_id", "event_dates.event_id")
         .where("events.event_id", "=", eventId)
@@ -24,7 +24,7 @@ async function find(eventId: number) {
     }
 }
 
-async function create(name: string, dates: Date[]) {
+async function create(name: string, dates: Date[]): Promise<{ id: number }> {
     const result = await db.transaction().execute(async (tx) => {
         const event = await tx.insertInto("events")
             .values({ name })

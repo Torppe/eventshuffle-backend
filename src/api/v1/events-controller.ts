@@ -4,11 +4,12 @@ import voteRepository from "../../repositories/vote-repository";
 import peopleRepository from "../../repositories/people-repository";
 import { body, param } from "express-validator";
 import { requestValidator } from "../../utils/middlewares";
+import { Event } from "../../db/types";
 
 const router = Router();
 
 router.get("/list", async (req: Request, res: Response) => {
-    const events = await eventRepository.findAll();
+    const events: Event[] = await eventRepository.findAll();
     res.json(events);
 });
 

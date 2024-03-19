@@ -7,7 +7,7 @@ export function errorHandler(err: Error, req: Request, res: Response, next: Next
     if (err instanceof RepositoryError) {
         return res.status(400).json({ error: err.message });
     }
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Unexpected error" });
 }
 
 export function requestValidator(req: Request, res: Response, next: NextFunction) {

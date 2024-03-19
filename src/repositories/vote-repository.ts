@@ -1,13 +1,13 @@
 import { db } from '../db/database'
 
-async function findById(eventId: number) {
+async function findById(eventId: number): Promise<{ event_date: Date, person_name: string }[]> {
     return await db.selectFrom("votes")
         .where("votes.event_id", "=", eventId)
         .select(["votes.event_date", "votes.person_name"])
         .execute();
 }
 
-async function create(eventId: number, personName: string, dates: Date[]) {
+async function create(eventId: number, personName: string, dates: Date[]): Promise<void> {
     await db.transaction().execute(async (tx) => {
         const people = await tx.selectFrom("people")
             .where("name", "=", personName)

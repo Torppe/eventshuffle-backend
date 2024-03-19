@@ -18,4 +18,5 @@ describe('Events Router', () => {
     test('DELETE /events/:id should delete an existing event', async () => {
         //TODO
     });
+
 });
