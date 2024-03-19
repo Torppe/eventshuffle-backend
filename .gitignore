@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+*.log
+*.gz
+*.rest
+*.env
+dist
+.nyc_output
+coverage
+benchmarks/graphs
+
